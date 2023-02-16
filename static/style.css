@@ -1,0 +1,58 @@
+@import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
+
+body {
+	padding: 0 2rem;
+	margin: 0 2rem;
+}
+
+#page > .container {
+	max-width: 800px;
+	margin: 30px auto 0;
+}
+
+/* Main */
+.main-content {
+	margin-bottom: 4rem;
+}
+
+
+h2 > a {
+	margin-right: 1rem;
+}
+
+/* Containers */
+.item.containers > .nes-container {
+	display: inline-block;
+	max-width: 400px;
+}
+
+@media screen and (max-width: 768px) {
+	body {
+		margin: 2rem 0.5rem;
+		padding: 0;
+	}
+}
+
+@media screen and (max-width: 580px) {
+	#page > .container {
+		margin-top: 30px;
+	}
+}
+
+.sup,
+.sub {
+	height: 0;
+	line-height: 1;
+	vertical-align: baseline;
+	_vertical-align: bottom;
+	position: relative;
+	font-size: x-small;
+}
+
+.sup {
+	bottom: 1ex;
+}
+
+.sub {
+	top: .5ex;
+}
