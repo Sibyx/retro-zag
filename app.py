@@ -1,13 +1,30 @@
-from flask import Flask, render_template, url_for
+import os
+
+from flask import Flask, render_template, session, request
 
 app = Flask(__name__)
+app.secret_key = os.getenv('SECRET')
 
 
-@app.route('/')
-@app.route('/eb619777-d311-42fd-a2ae-95da7c362015')
+@app.route('/', methods=['GET', 'POST'])
 def assignment1():
-    # print(url_for('assignment1'))
-    return render_template('assignment1.html')
+    stage = session.get('stage', 'intro')
+    if request.method == 'POST':
+        if stage == 'intro':
+            session['name'] = request.form['name'].strip()
+            stage = 'assignment'
+        elif stage in ['assignment', 'fail']:
+            if request.form['answer'] == '42':
+                stage = 'success'
+            else:
+                stage = 'fail'
+    else:
+        if stage in ['fail', 'success']:
+            stage = 'assignment'
+
+    session['stage'] = stage
+
+    return render_template('index.html', stage=stage)
 
 
 if __name__ == '__main__':

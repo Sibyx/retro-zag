@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ZAG</title>
+	<link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet"/>
+	<link href="static/style.css" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- Dialog -->
+<dialog class="nes-dialog" id="dialog-default">
+	<form method="dialog">
+		<p>
+			Felix vie, že najľahší vzorec na výpočet hodnoty g na zemskom povrchu je g = g<span class="sub">e</span>
+			*(1+beta*sin<span class="sup">2</span>fi). Felix si navyše pamätá, že g<span class="sub">e</span> je tiažové zrýchlenie na rovníku,
+			beta je konštanta s hodnotou 0.0052884 a fi je zemepisná šírka. Škoda, že si Felix zabudol do vesmíru zobrať
+			kalkulačku…
+		</p>
+		<p>
+			Keďže tiažové zrýchlenie na Zemi sa mení iba v závislosti od zemepisnej šírky, zemepisnú dĺžku vôbec nebudeš na
+			výpočet potrebovať.
+		</p>
+		<menu class="dialog-menu" style="text-align: center; padding: 0;">
+			<button class="nes-btn is-primary">OK</button>
+		</menu>
+	</form>
+</dialog>
+
+
+<div id="page">
+	<div class="container">
+		<main class="main-content">
+			<section class="nes-container with-title">
+				<h3 class="title">Zadanie 1</h3>
+			{% if stage == 'intro' %}
+				<p style="text-align: justify;">
+					Pomôž Felixovi Baumgartnerovi s jeho zoskokom zo stratosféry 14. októbra 2012. Felix potrebuje vedieť, aké
+					tiažové zrýchlenie g na neho bude pôsobiť, keď vyskočí.
+				</p>
+			{% elif stage in ['assignment', 'fail'] %}
+				<p style="text-align: justify;">
+					Geografické súradnice zoskokového bodu sú 104°32’21“
+					zemepisnej dĺžky, 33°18’39“ zemepisnej šírky a bude skákať z výšky 38 969.3 m.n.m.
+				</p>
+			{% elif stage == 'success' %}
+				<p style="text-align: justify;">
+					{{ session['name'] }}, teraz je čas urobiť screenshot!
+				</p>
+			{% endif %}
+
+				<img id="gif" src="" style="width: 100%"/>
+				{% if stage == 'intro' %}
+					<script>document.getElementById('gif').src = "static/intro.jpeg?a=" + Math.random()</script>
+				{% elif stage == 'assignment' %}
+					<script>document.getElementById('gif').src = "static/assignment.gif?a=" + Math.random()</script>
+				{% elif stage == 'fail' %}
+					<script>document.getElementById('gif').src = "static/fail.png?a=" + Math.random()</script>
+				{% elif stage == 'success' %}
+					<script>document.getElementById('gif').src = "static/success.png?a=" + Math.random()</script>
+				{% endif %}
+
+				<form method="post">
+				<div class="nes-field" style="margin: 20px 0;">
+						{% if stage == 'intro' %}
+							<input type="text" id="answer" name="name" class="nes-input" placeholder="Tvoje meno">
+						{% elif stage in ['assignment', 'fail'] %}
+							<input type="text" id="answer" name="answer" class="nes-input" placeholder="Tvoja odpoveď">
+						{% endif %}
+				</div>
+				<div style="text-align: center;">
+					{% if stage == 'intro' %}
+						<button type="submit" class="nes-btn is-primary">Pokračovať</button>
+					{% elif stage in ['assignment', 'fail'] %}
+						<button type="button" class="nes-btn is-success" onclick="document.getElementById('dialog-default').showModal();">Nápoveda</button>
+						<button type="submit" class="nes-btn is-primary">Odpovedať</button>
+					{% endif %}
+				</div>
+				</form>
+			</section>
+		</main>
+	</div>
+</div>
+</body>
+</html>
