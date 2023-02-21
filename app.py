@@ -22,7 +22,11 @@ def index():
                 else:
                     stage = 'fail'
             elif assignment == '2':
-                stage = 'success' if request.form['answer'] == '42' else 'fail'
+                if request.form['answer'] == '42':
+                    stage = 'success'
+                    assignment = '1'
+                else:
+                    stage = 'fail'
 
     else:
         if stage in ['fail', 'success']:
