@@ -23,13 +23,15 @@ class Record(db.Model):
     stage = db.Column(db.String(), nullable=True)
     answer = db.Column(db.String(), nullable=True)
     assignment = db.Column(db.String(), nullable=True)
+    ip = db.Column(db.String(), nullable=True)
     created_at = db.Column(db.DateTime(), default=datetime.now, nullable=False)
 
-    def __init__(self, name, stage, answer, assignment):
+    def __init__(self, name, stage, answer, assignment, ip):
         self.name = name
         self.stage = stage
         self.answer = answer
         self.assignment = assignment
+        self.ip = ip
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -66,6 +68,7 @@ def index():
         session.get('stage'),
         request.form.get('answer'),
         session.get('assignment'),
+        request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr)
     )
     db.session.add(record)
     db.session.commit()

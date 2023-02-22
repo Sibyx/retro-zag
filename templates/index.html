@@ -33,7 +33,7 @@
 		{% elif assignment == '2' %}
 			<p>
 				Zmena hodnoty tiažového zrýchlenia g so zmenou nadmorskej výšky sa dá ľahko spočítať podľa tohto vzorca:
-				Δ = -0.000003086*h [m.s-2].
+				Δg = -0.000003086*h [m.s-2].
 			</p>
 		{% endif %}
 		<menu class="dialog-menu" style="text-align: center; padding: 0;">
@@ -84,7 +84,11 @@
 				{% if stage == 'intro' %}
 					<script>document.getElementById('gif').src = "static/intro.jpeg?a=" + Math.random()</script>
 				{% elif stage == 'assignment' %}
-					<script>document.getElementById('gif').src = "static/assignment.gif?a=" + Math.random()</script>
+					{% if assignment == '1' %}
+						<script>document.getElementById('gif').src = "static/assignment.gif?a=" + Math.random()</script>
+					{% else %}
+						<script>document.getElementById('gif').src = "static/assignment2-loop.gif?a=" + Math.random()</script>
+					{% endif %}
 				{% elif stage == 'fail' %}
 					<script>document.getElementById('gif').src = "static/fail.png?a=" + Math.random()</script>
 				{% elif stage == 'success' %}
