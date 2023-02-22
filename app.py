@@ -8,7 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
-    "POSTGRES_CONNECTION", "postgresql://postgres@localhost:5432/zag"
+    "POSTGRES_CONNECTION", "postgresql://jdubec@localhost:5432/zag"
 )
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
@@ -42,13 +42,13 @@ def index():
             stage = 'assignment'
         elif stage in ['assignment', 'fail']:
             if assignment == '1':
-                if request.form['answer'] == '42':
+                if request.form['answer'] == '9.79609':
                     stage = 'assignment'
                     assignment = '2'
                 else:
                     stage = 'fail'
             elif assignment == '2':
-                if request.form['answer'] == '42':
+                if request.form['answer'] == '9.67583':
                     stage = 'success'
                     assignment = '1'
                 else:

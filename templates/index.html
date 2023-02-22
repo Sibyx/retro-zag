@@ -13,19 +13,23 @@
 	<form method="dialog">
 		{% if assignment == '1' %}
 			<p>
-				Felix vie, že najľahší vzorec na výpočet hodnoty g na zemskom povrchu je g = g<span class="sub">e</span>
-				*(1+beta*sin<span class="sup">2</span>fi). Felix si navyše pamätá, že g<span class="sub">e</span> je tiažové zrýchlenie na rovníku,
-				beta je konštanta s hodnotou 0.0052884 a fi je zemepisná šírka. Škoda, že si Felix zabudol do vesmíru zobrať
-				kalkulačku…
+				Felix vie, že najľahší vzorec na výpočet hodnoty g na zemskom povrchu je <br/> g = g<span class="sub">e</span>
+				*(1+β*sin<span class="sup">2</span>φ). Felix si navyše pamätá, že g<span class="sub">e</span> je
+				tiažové zrýchlenie na rovníku rovné 9.70849, <br /> β je konštanta s hodnotou 0.0052884 a φ je zemepisná šírka.
+				Škoda, že si Felix zabudol do vesmíru zobrať kalkulačku…
 			</p>
 			<p>
 				Keďže tiažové zrýchlenie na Zemi sa mení iba v závislosti od zemepisnej šírky, zemepisnú dĺžku vôbec nebudeš na
 				výpočet potrebovať.
 			</p>
+			<p>
+				Výsledky zadávané do odpoveďového okienka zaokrúhli na 5 desatinných miest (oddelovač desatinných miest je
+				bodka).
+			</p>
 		{% elif assignment == '2' %}
 			<p>
 				Zmena hodnoty tiažového zrýchlenia g so zmenou nadmorskej výšky sa dá ľahko spočítať podľa tohto vzorca:
-				deltag = -0.000003086*h [m.s-2].
+				Δ = -0.000003086*h [m.s-2].
 			</p>
 		{% endif %}
 		<menu class="dialog-menu" style="text-align: center; padding: 0;">
@@ -40,10 +44,12 @@
 		<main class="main-content">
 			<section class="nes-container with-title">
 				<h3 class="title">
-					{% if assignment == '1' %}
-						Zadanie 1
+					{% if stage == 'success' %}
+						Hotovo
+					{% endifif assignment == '1' %}
+						Úloha 1
 					{% elif assignment == '2' %}
-						Zadanie 2
+						Úloha 2
 					{% endif %}
 				</h3>
 			{% if stage == 'intro' %}
@@ -55,12 +61,13 @@
 				{% if assignment == '1' %}
 					<p style="text-align: justify;">
 						Geografické súradnice zoskokového bodu sú 104°32’21“
-						zemepisnej dĺžky, 33°18’39“ zemepisnej šírky a bude skákať z výšky 38 969.3 m.n.m.
+						zemepisnej dĺžky, 33°18’39“ zemepisnej šírky a bude skákať z výšky <br/> 38 969.4 m.n.m.
 					</p>
 				{% elif assignment == '2' %}
 					<p style="text-align: justify;">
-						Už si síce vypočítal nejaké tiažové zrýchlenie, ale je platné len na povrchu Zeme. To je Felixovi na nič,
-						keďže skáče z takmer štyridsiatich kilometrov! Aké tiažové zrýchlenie bude na neho pôsobiť vo výške 38 369.4m?
+						Už si síce vypočítal nejaké tiažové zrýchlenie, ale je platné len na povrchu Zeme (vlastne vo výške 0
+						metrov). To je Felixovi na nič, keďže skáče z takmer štyridsiatich kilometrov! Aké tiažové zrýchlenie bude
+						na neho pôsobiť vo výške 38 369.4m?
 					</p>
 				{% endif %}
 			{% elif stage == 'success' %}
